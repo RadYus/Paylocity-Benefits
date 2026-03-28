@@ -74,7 +74,7 @@ test.describe.serial('REST API', () => {
   			"id": id,
 			"dependants": dependantsUpdate,
 			"expiration": "2030-04-02T11:35:34.472Z",
-  			"salary": 9547.176413880537 };
+  			"salary": 9500 };
 		const response = await api.put('/Prod/api/Employees', {data: data, headers: {Authorization: `Basic ${basic}`}});
 		if (!response.ok()) {
 			console.log('response status:', response.status());
@@ -83,6 +83,10 @@ test.describe.serial('REST API', () => {
 		expect(response.ok()).toBeTruthy();
 		const body = await response.json();
 		console.log('Update employee', JSON.stringify(body, null, 2));
+		expect(body.firstName).toBe(firstNameUpdate);
+		expect(body.lastName).toBe(lastNameUpdate);
+		expect(body.dependants).toBe(dependantsUpdate);
+		expect(body.salary).toBe(9500);
 	});
 
 	test('GET an employee', async () => {
@@ -96,6 +100,10 @@ test.describe.serial('REST API', () => {
 		expect(response.ok()).toBeTruthy();
 		const body = await response.json();
 		console.log('GET an employee', JSON.stringify(body, null, 2));
+		expect(body.firstName).toBe(firstNameUpdate);
+		expect(body.lastName).toBe(lastNameUpdate);
+		expect(body.dependants).toBe(dependantsUpdate);
+		expect(body.salary).toBe(9500);
 	});
 	
 	test('DELETE an employee', async () => {
