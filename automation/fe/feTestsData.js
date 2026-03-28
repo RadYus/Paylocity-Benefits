@@ -1,27 +1,8 @@
 import { expect } from '@playwright/test';
-import fs from 'fs';
-import path from 'path';
 
-// load playwright/.auth into process.env if not already set
-function loadAuthFile() { 
-  if (process.env.BENEFITS_USERNAME && process.env.BENEFITS_PASSWORD) return;
-  const authPath = path.resolve(process.cwd(), 'playwright', '.auth');
-  if (!fs.existsSync(authPath)) return;
-  const re = /([A-Z0-9_]+)\s*=\s*['"]([^'"]+)['"]/g;
-  const content = fs.readFileSync(authPath, 'utf8');
-  let m;
-  while ((m = re.exec(content)) !== null) {
-    const k = m[1];
-    const v = m[2];
-    if (!process.env[k]) process.env[k] = v;
-  }
-}
-loadAuthFile();
-
-const USERNAME = process.env.BENEFITS_USERNAME || '';
-const PASSWORD = process.env.BENEFITS_PASSWORD || '';
-
-export async function loginToBenefitsDashboard( page ) {
+export async function loginToBenefitsDashboard( {page} ) {
+  const USERNAME = process.env.BENEFITS_USERNAME;
+  const PASSWORD = process.env.BENEFITS_PASSWORD;
   await page.goto('https://wmxrwq14uc.execute-api.us-east-1.amazonaws.com/Prod/Account/Login');
   await page.getByRole('textbox', { name: 'Username' }).fill(USERNAME);
   await page.getByRole('textbox', { name: 'Password' }).fill(PASSWORD);
@@ -35,7 +16,7 @@ export async function logoutOfBenefitsDashboard( page ) {
 }
 
 export async function addEmployeeManual( page, firstName, lastName, dependents ) {
-  await page.waitForTimeout(1000);
+  await page.waitForTimeout(1100);
   await page.getByRole('button', { name: 'Add Employee' }).click();
   await page.getByRole('textbox', { name: 'First Name:' }).fill(firstName);
   await page.getByRole('textbox', { name: 'Last Name:' }).fill(lastName);
@@ -61,7 +42,7 @@ export async function removeAllEmployees( page ) {
   while (true) {
     await page.waitForTimeout(1000);
     const count = await page.locator('i').count();
-    if (count <= 1) break;
+    if (count <= 0) break;
     try {
       await page.locator('i').nth(1).click();
       await page.getByRole('button', { name: 'Delete' }).click();

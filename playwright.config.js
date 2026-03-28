@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
 
 /**
  * Read environment variables from file.
@@ -12,6 +13,9 @@ import { defineConfig, devices } from '@playwright/test';
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
+
+dotenv.config({ path: './automation/.env' });
+
 export default defineConfig({
   testDir: './',
   /* Run tests in files in parallel */
@@ -37,17 +41,17 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'], username: process.env.BENEFITS_USERNAME, password: process.env.BENEFITS_PASSWORD },
     },
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: { ...devices['Desktop Firefox'], username: process.env.BENEFITS_USERNAME, password: process.env.BENEFITS_PASSWORD },
     },
 
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      use: { ...devices['Desktop Safari'], username: process.env.BENEFITS_USERNAME, password: process.env.BENEFITS_PASSWORD },
     },
 
     /* Test against mobile viewports. */
