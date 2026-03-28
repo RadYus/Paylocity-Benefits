@@ -1,0 +1,29 @@
+# Defects found while testing Benefits Dashboard
+
+#### DF-001
+
+### Sumary
+
+Benefits Dashboard - Switched first/last name
+
+### Description
+
+Benefits Dashboard has incorect mapping for first and last name.
+Values in API are correctly places, but FE is displying them incorectly.
+
+###### Steps to reproduce:
+
+1. Log in to FE
+2. On the "Benefits Dashboard" page, click the "Add Employee" button
+3. Input any Employee First Name, Last Name & Dependent information.
+4. Click the "Submit" button
+5. First and Last name are switched
+
+###### Screenshot:
+
+![Preview](../images/01.png)
+![Preview](../images/02.png)
+
+### Severity
+
+Hight
