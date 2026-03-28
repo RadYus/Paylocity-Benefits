@@ -1,4 +1,25 @@
 import { expect } from '@playwright/test';
+import fs from 'fs';
+import path from 'path';
+
+// load playwright/.auth into process.env if not already set
+function loadAuthFile() { 
+  if (process.env.BENEFITS_USERNAME && process.env.BENEFITS_PASSWORD) return;
+  const authPath = path.resolve(process.cwd(), 'playwright', '.auth');
+  if (!fs.existsSync(authPath)) return;
+  const re = /([A-Z0-9_]+)\s*=\s*['"]([^'"]+)['"]/g;
+  const content = fs.readFileSync(authPath, 'utf8');
+  let m;
+  while ((m = re.exec(content)) !== null) {
+    const k = m[1];
+    const v = m[2];
+    if (!process.env[k]) process.env[k] = v;
+  }
+}
+loadAuthFile();
+
+const USERNAME = process.env.BENEFITS_USERNAME || '';
+const PASSWORD = process.env.BENEFITS_PASSWORD || '';
 
 export async function loginToBenefitsDashboard( page ) {
   await page.goto('https://wmxrwq14uc.execute-api.us-east-1.amazonaws.com/Prod/Account/Login');
