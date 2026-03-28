@@ -5,25 +5,25 @@ test.beforeEach(async ({ page }) => {
   await loginToBenefitsDashboard({ page });
 });
 
-test('logout test', async ({ page }) => {
+test('Logout test', async ({ page }) => {
   await logoutOfBenefitsDashboard(page);
   await loginToBenefitsDashboard({ page });
   });
 
-test('add employee test', async ({ page }) => {
+test('Add employee test', async ({ page }) => {
   await addEmployeeManual(page, 'John', 'Doe', 2);
   });
 
-test('add employees test', async ({ page }) => {
+test('Add employees test', async ({ page }) => {
   test.setTimeout(100000);
   await addEmployees(page, 50);
   });
 
-test('remove employees test', async ({ page }) => {
+test('Remove employees test', async ({ page }) => {
   await removeEmployees(page, 8);
   });
 
-test('remove all employees test', async ({ page }) => {
+test('Remove all employees test', async ({ page }) => {
   test.setTimeout(100000);
   await removeAllEmployees(page);
   });
