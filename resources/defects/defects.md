@@ -21,8 +21,8 @@ Values in API are correctly places, but FE is displying them incorectly.
 
 ###### Screenshot:
 
-![Preview](../images/01.png)
-![Preview](../images/02.png)
+![Preview](../images/001.png)
+![Preview](../images/002.png)
 
 ### Severity
 
