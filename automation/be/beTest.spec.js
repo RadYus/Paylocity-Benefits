@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import {totalBenefitCost, totalNetPaycheck, calculatePaycheckAmount} from './beTestData';
+import {totalBenefitCost, calculatePaycheckAmount} from './beTestData';
 
 let api;
 let id;
@@ -62,8 +62,7 @@ test.describe.serial('REST API', () => {
 		expect(body.lastName).toBe(lastName);
 		expect(body.dependants).toBe(dependants);
 		expect(body.salary).toBe(52000);
-		expect(body.benefitCost).toBe(await totalBenefitCost(dependants));
-		expect(body.gross).toBe(await totalNetPaycheck(dependants));
+		expect(body.benefitsCost).toBe(await totalBenefitCost(dependants));
 		expect(body.net).toBe(await calculatePaycheckAmount(dependants));
 	});
 
@@ -78,7 +77,7 @@ test.describe.serial('REST API', () => {
   			"id": id,
 			"dependants": dependantsUpdate,
 			"expiration": "2030-04-02T11:35:34.472Z",
-  			"salary": 9500 };
+  			"salary": 52000 };
 		const response = await api.put('/Prod/api/Employees', {data: data, headers: {Authorization: `Basic ${basic}`}});
 		if (!response.ok()) {
 			console.log('response status:', response.status());
@@ -90,7 +89,9 @@ test.describe.serial('REST API', () => {
 		expect(body.firstName).toBe(firstNameUpdate);
 		expect(body.lastName).toBe(lastNameUpdate);
 		expect(body.dependants).toBe(dependantsUpdate);
-		expect(body.salary).toBe(9500);
+		expect(body.salary).toBe(52000);
+		expect(body.benefitsCost).toBe(await totalBenefitCost(dependantsUpdate));
+		expect(body.net).toBe(await calculatePaycheckAmount(dependantsUpdate));
 	});
 
 	test('GET an employee', async () => {
@@ -107,7 +108,9 @@ test.describe.serial('REST API', () => {
 		expect(body.firstName).toBe(firstNameUpdate);
 		expect(body.lastName).toBe(lastNameUpdate);
 		expect(body.dependants).toBe(dependantsUpdate);
-		expect(body.salary).toBe(9500);
+		expect(body.salary).toBe(52000);
+		expect(body.benefitsCost).toBe(await totalBenefitCost(dependantsUpdate));
+		expect(body.net).toBe(await calculatePaycheckAmount(dependantsUpdate));
 	});
 	
 	test('DELETE an employee', async () => {
