@@ -5,11 +5,11 @@ const benefitCostPerYear = 1000;
 
 export async function totalBenefitCost(dependants) {
     const totalBenefitCostPerYear = (benefitCostPerYear + (DependentCostPerYear * dependants)) / paychecksPerYear;
-    return totalBenefitCostPerYear;
+    return Number(totalBenefitCostPerYear.toFixed(5));
 }
 
 export async function calculatePaycheckAmount(dependants) {
     const totalBenefitCostPerYear = (benefitCostPerYear + (DependentCostPerYear * dependants)) / paychecksPerYear;
     const PaycheckAmount = (baseSalary / paychecksPerYear) - totalBenefitCostPerYear;
-    return PaycheckAmount;
+    return Number(PaycheckAmount.toFixed(4));
 }

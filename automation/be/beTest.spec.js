@@ -6,7 +6,7 @@ let id;
 // Select test data
 const firstName = "John";
 const lastName = "Doe";
-const dependants = 11;
+const dependants = 1;
 // Update test data
 const firstNameUpdate = 'Marek';
 const lastNameUpdate = 'Parek';
