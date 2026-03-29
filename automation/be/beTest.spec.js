@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import {totalBenefitCost, totalNetPaycheck, calculatePaycheckAmount} from './beTestData';
 
 let api;
 let id;
@@ -61,6 +62,9 @@ test.describe.serial('REST API', () => {
 		expect(body.lastName).toBe(lastName);
 		expect(body.dependants).toBe(dependants);
 		expect(body.salary).toBe(52000);
+		expect(body.benefitCost).toBe(await totalBenefitCost(dependants));
+		expect(body.gross).toBe(await totalNetPaycheck(dependants));
+		expect(body.net).toBe(await calculatePaycheckAmount(dependants));
 	});
 
 	test('Update employee', async () => {
