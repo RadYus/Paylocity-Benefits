@@ -49,7 +49,7 @@ If I insert correct username and incorect password, then I get error message. It
           "_error": "net::ERR_HTTP_RESPONSE_CODE_FAILURE",
           "_fetchedViaServiceWorker": false>
 
-HAR: [loginPage.har](../loginPage.har)
+HAR: [loginPage.har](../data/loginPage.har)
 Date: Sun, 29 Mar 2026 09:44:27 GMT
 
 ###### Steps to reproduce:
