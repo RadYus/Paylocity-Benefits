@@ -14,8 +14,7 @@ import dotenv from 'dotenv';
  * @see https://playwright.dev/docs/test-configuration
  */
 
-dotenv.config({ path: './automation/.env' });
-
+dotenv.config();
 export default defineConfig({
   testDir: './',
   /* Run tests in files in parallel */
@@ -44,15 +43,15 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'], username: process.env.BENEFITS_USERNAME, password: process.env.BENEFITS_PASSWORD },
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'], username: process.env.BENEFITS_USERNAME, password: process.env.BENEFITS_PASSWORD },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'], username: process.env.BENEFITS_USERNAME, password: process.env.BENEFITS_PASSWORD },
+    // },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'], username: process.env.BENEFITS_USERNAME, password: process.env.BENEFITS_PASSWORD },
-    },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'], username: process.env.BENEFITS_USERNAME, password: process.env.BENEFITS_PASSWORD },
+    // },
 
     /* Test against mobile viewports. */
     // {
