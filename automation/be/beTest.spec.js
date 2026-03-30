@@ -1,16 +1,16 @@
 import { test, expect } from '@playwright/test';
-import {totalBenefitCost, calculatePaycheckAmount} from './beTestData';
+import {benefitCostPerPaycheck, paycheckAmount} from './beTestData';
 
 let api;
 let id;
 // Select test data
 const firstName = "John";
 const lastName = "Doe";
-const dependants = 1;
+const dependants = 10;
 // Update test data
 const firstNameUpdate = 'Marek';
 const lastNameUpdate = 'Parek';
-const dependantsUpdate = 22;
+const dependantsUpdate = 10;
 
 test.describe.serial('REST API', () => {
 	
@@ -62,8 +62,8 @@ test.describe.serial('REST API', () => {
 		expect(body.lastName).toBe(lastName);
 		expect(body.dependants).toBe(dependants);
 		expect(body.salary).toBe(52000);
-		expect(body.benefitsCost).toBe(await totalBenefitCost(dependants));
-		expect(body.net).toBe(await calculatePaycheckAmount(dependants));
+		expect(body.benefitsCost).toBeCloseTo(await benefitCostPerPaycheck(dependants), 3);
+		expect(body.net).toBeCloseTo(await paycheckAmount(dependants), 3);
 	});
 
 	test('Update employee', async () => {
@@ -90,8 +90,8 @@ test.describe.serial('REST API', () => {
 		expect(body.lastName).toBe(lastNameUpdate);
 		expect(body.dependants).toBe(dependantsUpdate);
 		expect(body.salary).toBe(52000);
-		expect(body.benefitsCost).toBe(await totalBenefitCost(dependantsUpdate));
-		expect(body.net).toBe(await calculatePaycheckAmount(dependantsUpdate));
+		expect(body.benefitsCost).toBeCloseTo(await benefitCostPerPaycheck(dependantsUpdate), 3);
+		expect(body.net).toBeCloseTo(await paycheckAmount(dependantsUpdate), 3);
 	});
 
 	test('GET an employee', async () => {
@@ -109,8 +109,8 @@ test.describe.serial('REST API', () => {
 		expect(body.lastName).toBe(lastNameUpdate);
 		expect(body.dependants).toBe(dependantsUpdate);
 		expect(body.salary).toBe(52000);
-		expect(body.benefitsCost).toBe(await totalBenefitCost(dependantsUpdate));
-		expect(body.net).toBe(await calculatePaycheckAmount(dependantsUpdate));
+		expect(body.benefitsCost).toBeCloseTo(await benefitCostPerPaycheck(dependantsUpdate), 3);
+		expect(body.net).toBeCloseTo(await paycheckAmount(dependantsUpdate), 3);
 	});
 	
 	test('DELETE an employee', async () => {

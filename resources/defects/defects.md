@@ -19,3 +19,7 @@
 #### DF-005
 
 [Benefits Dashboard - First/Last name - special characters](../defects/DF-005.md)
+
+#### DF-006
+
+[Benefits Dashboard - Calculations - Benefits Cost/Net Pay](../defects/DF-006.md)
