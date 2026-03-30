@@ -2,15 +2,11 @@ Paylocity bugs
 
 BUGS UI
 
-- Prohozene Last/First name
-- Pri zadani nevalidnich prihlasovaich udaju - HTTP ERROR 405
-- Dependents max = 32
-
 BUGS API
 
-- PUT can change salary
+- Unconsistend data output (diferent decimals and incorect number rounding)
 
 SUGGESTIONS
 
 - Radi se podle id, vhodnejsi by bylo jine / mit moznost seradit
--
+- Specify time periods for all values in FE dashboard
