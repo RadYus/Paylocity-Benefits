@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 import { validateResponse, bodyForEmployee, bodyForUpdatedEmployee, validateResponseData } from './beTestsData';
 
 let api;
@@ -16,11 +16,12 @@ const dependantsUpdate = 8;
 // POST employee test and GET list of employees test can be run independently
 test.describe.serial('API - All, serial test', () => {
 	
-
+	// Initialize the API request context before all tests
 	test.beforeAll(async ({ playwright }) => {
 		api = await playwright.request.newContext({baseURL: 'https://wmxrwq14uc.execute-api.us-east-1.amazonaws.com'});
 	});
 
+	// Create a new employee and validate the response
 	test('POST employee test', async () => {
         const AUTHENTICATION = process.env.BENEFITS_AUTHENTICATION;
 		const basic = `${AUTHENTICATION}`;
@@ -33,6 +34,7 @@ test.describe.serial('API - All, serial test', () => {
 		await validateResponseData(body, firstName, lastName, dependants);
 	});
 
+	// Retrieve the created employee and validate the response
 	test('GET employee test', async () => {
         const AUTHENTICATION = process.env.BENEFITS_AUTHENTICATION;
 		const basic = `${AUTHENTICATION}`;
@@ -42,6 +44,7 @@ test.describe.serial('API - All, serial test', () => {
 		await validateResponseData(body, firstName, lastName, dependants);
 	});
 
+	// Update the employee's information and validate the response
 	test('PUT employee test', async () => {
         const AUTHENTICATION = process.env.BENEFITS_AUTHENTICATION;
 		const basic = `${AUTHENTICATION}`;
@@ -53,6 +56,7 @@ test.describe.serial('API - All, serial test', () => {
 		await validateResponseData(body, firstNameUpdate, lastNameUpdate, dependantsUpdate);
 	});
 
+	// Retrieve the updated employee and validate the response
 	test('GET updated employee test', async () => {
         const AUTHENTICATION = process.env.BENEFITS_AUTHENTICATION;
 		const basic = `${AUTHENTICATION}`;
@@ -62,6 +66,7 @@ test.describe.serial('API - All, serial test', () => {
 		await validateResponseData(body, firstNameUpdate, lastNameUpdate, dependantsUpdate);
 	});
 	
+	// Delete the employee and validate the response
 	test('DELETE employee test', async () => {
         const AUTHENTICATION = process.env.BENEFITS_AUTHENTICATION;
 		const basic = `${AUTHENTICATION}`;
@@ -69,6 +74,7 @@ test.describe.serial('API - All, serial test', () => {
 		await validateResponse(response);
 	});
 
+	// Retrieve all employees and validate that response
 	test('GET list of employees test', async () => {
         const AUTHENTICATION = process.env.BENEFITS_AUTHENTICATION;
 		const basic = `${AUTHENTICATION}`;
