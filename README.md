@@ -23,6 +23,7 @@ _Created by Radim Sedlacek_
    - To verify installation: `node -v` `npm -v`
 2. Install dependencies: `npm i`
 3. Install Playwright Browser: `npx playwright install`
+4. In VSC, go to "Extensions" and install "Playwright Test for VSCode"
 
 ## Environment variables:
 
