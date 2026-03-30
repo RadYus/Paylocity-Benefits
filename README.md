@@ -13,6 +13,7 @@ _Created by Radim Sedlacek_
 
 1. Node.js
    - Download and install from: https://nodejs.org/
+   - VSC may need to be restarted
    - To verify installation: `node -v` `npm -v`
 
 2. Install dependencies: `npm i`

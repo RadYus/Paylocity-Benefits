@@ -1,17 +1,19 @@
 import { test, expect } from '@playwright/test';
-import {benefitCostPerPaycheck, paycheckAmount, validateResponse, bodyForEmployee, bodyForUpdatedEmployee, validateResponseData} from './beTestsData';
+import { validateResponse, bodyForEmployee, bodyForUpdatedEmployee, validateResponseData } from './beTestsData';
 
 let api;
 let id;
 // Select test data
 const firstName = "John";
 const lastName = "Doe";
-const dependants = 31;
+const dependants = 3;
 // Update test data
 const firstNameUpdate = 'Marek';
 const lastNameUpdate = 'Parek';
-const dependantsUpdate = 31;
+const dependantsUpdate = 8;
 
+// This API is intended to be tested in a specific order, run the serial test "test.describe.serial('API - All, serial test', () =>"
+// POST employee test and GET list of employees test can be run independently
 test.describe.serial('API - All, serial test', () => {
 	
 
