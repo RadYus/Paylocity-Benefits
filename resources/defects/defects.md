@@ -23,3 +23,11 @@
 #### DF-006
 
 [Benefits Dashboard - Calculations - Benefits Cost/Net Pay](../defects/DF-006.md)
+
+#### DF-007
+
+[Benefits Dashboard - Creating client with PUT API](../defects/DF-007.md)
+
+#### DF-008
+
+[Benefits Dashboard - Expired POST API](../defects/DF-008.md)

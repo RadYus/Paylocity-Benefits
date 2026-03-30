@@ -19,7 +19,7 @@ test.describe.serial('API - All, serial test', () => {
 		api = await playwright.request.newContext({baseURL: 'https://wmxrwq14uc.execute-api.us-east-1.amazonaws.com'});
 	});
 
-	test('Add employee test', async () => {
+	test('POST employee test', async () => {
         const AUTHENTICATION = process.env.BENEFITS_AUTHENTICATION;
 		const basic = `${AUTHENTICATION}`;
 		
@@ -40,7 +40,7 @@ test.describe.serial('API - All, serial test', () => {
 		await validateResponseData(body, firstName, lastName, dependants);
 	});
 
-	test('Update employee test', async () => {
+	test('PUT employee test', async () => {
         const AUTHENTICATION = process.env.BENEFITS_AUTHENTICATION;
 		const basic = `${AUTHENTICATION}`;
 		
